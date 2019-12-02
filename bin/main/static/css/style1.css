@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+* {
+	font-family: "NanumBarunGothic";
+	src: url("fonts/NanumBarunGothic.ttf") format("eot");
+}
+
+body {
+	margin: 0 auto;
+	width: 350px;
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 14px;
+	color: #353535;
+	align: center;
+}
+
+.box {
+	width: 328px;
+	height: 50px;
+	border: 1px solid #D5D5D5;
+	padding: 10px;
+}
+
+#email, #ordernum {
+	border-bottom-style: hidden;
+}
+
+.submit {
+	width: 100%;
+	height: 60px;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 5px;
+	cursor: pointer;
+	background: #33b5e5;
+	border: 0;
+	padding: 10px 15px;
+	color: #ffffff;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+	text-decoration: none important;
+}

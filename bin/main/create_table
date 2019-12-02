@@ -1,0 +1,28 @@
+DROP DATABASE insight;
+CREATE DATABASE insight;
+USE insight;
+
+CREATE TABLE WS_Board(
+ idKey INT(11) NOT NULL AUTO_INCREMENT,
+ title VARCHAR(300) NOT NULL COMMENT '제목',
+ contents TEXT NOT NULL COMMENT '내용',
+ hitCnt SMALLINT(10) NOT NULL DEFAULT '0' COMMENT '조회수',
+ createdDate DATETIME NOT NULL COMMENT '작성시간',
+ creatorId VARCHAR(50) NOT NULL COMMENT '작성자',
+ updatedDate DATETIME DEFAULT NULL COMMENT '수정시간',
+ updaterId VARCHAR(50) DEFAULT NULL COMMENT '수정자',
+ category VARCHAR(10) NOT NULL COMMENT '카테고리',
+ deleted_yn CHAR(1) NOT NULL DEFAULT 'N' COMMENT '삭제 여부',
+ PRIMARY KEY(idKey)
+)DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
+
+CREATE TABLE WS_User (
+  idKey BIGINT NOT NULL AUTO_INCREMENT,
+  userId VARCHAR(50) NOT NULL,
+  password VARCHAR(1024) NULL,
+  joinDate DATETIME NOT NULL COMMENT '가입일',
+  deleted_yn CHAR(1) NOT NULL DEFAULT 'N' COMMENT '삭제 여부',
+  PRIMARY KEY (idKey)
+);
+
+INSERT INTO WS_Board(title, contents, creatorId, createdDate, category) VALUES('first', 'first', 'admin', NOW(), '국내');

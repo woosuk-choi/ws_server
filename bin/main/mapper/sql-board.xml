@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="ws_server.board.mapper.BoardMapper">
+	<select id="selectBoardList" resultType="ws_server.board.dto.BoardDto">
+		<![CDATA[
+			SELECT idKey, title, hitCnt, DATE_FORMAT(createdDate, '%Y-%m-%d %H:%i:%s') AS createdDate 
+			  FROM WS_Board
+			 WHERE deleted_yn = 'N'
+		  ORDER BY idKey DESC
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="ws_server.board.dto.BoardDto">
+		<![CDATA[
+			INSERT INTO WS_Board(title, contents, createdDate, creatorId, category)
+						 VALUES(#{title}, #{contents}, NOW(), 'admin', #{category})
+		]]>
+	</insert>
+	
+	<update id="updateHitCount" parameterType="int">
+		<![CDATA[
+			UPDATE WS_Board
+			   SET hitCnt = hitCnt + 1
+			 WHERE idKey = #{idKey}
+		]]>
+	</update>
+	
+	<select id="selectBoardDetail" parameterType="int" resultType="ws_server.board.dto.BoardDto">
+		<![CDATA[
+			SELECT idKey, title, contents, hitCnt, DATE_FORMAT(createdDate, '%Y-%m-%d %H:%i:%s') AS createdDate, creatorId, category
+			  FROM WS_Board
+			 WHERE idKey = #{idKey} AND deleted_yn = 'N'
+		]]>
+	</select>
+	
+	<update id="updateBoard" parameterType="ws_server.board.dto.BoardDto">
+		<![CDATA[
+			UPDATE WS_Board
+			   SET title = #{title}, contents = #{contents}, updatedDate = NOW(), updaterId = 'admin'
+			 WHERE idKey = #{idKey}
+		]]>
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		<![CDATA[
+			UPDATE WS_Board
+			   SET deleted_yn = 'Y', updatedDate = NOW(), updaterId = 'admin'
+			 WHERE idKey = #{idKey}
+		]]>
+	</update>
+</mapper>
