@@ -25,10 +25,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardDto selectBoardDetail(int boardIdx) throws Exception {
+	public BoardDto selectBoardDetail(int idKey) throws Exception {
 		
-		BoardDto board = boardMapper.selectBoardDetail(boardIdx);
-		boardMapper.updateHitCount(boardIdx);
+		BoardDto board = boardMapper.selectBoardDetail(idKey);
+		boardMapper.updateHitCount(idKey);
 		
 		return board;
 	}
@@ -39,8 +39,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void deleteBoard(int boardIdx) throws Exception {
-		boardMapper.deleteBoard(boardIdx);
+	public void deleteBoard(int idKey) throws Exception {
+		boardMapper.deleteBoard(idKey);
 	}
 
 }
