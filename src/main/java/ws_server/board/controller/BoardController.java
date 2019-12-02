@@ -37,6 +37,11 @@ public class BoardController {
 		return "/board/boardWrite";
 	}
 	
+	@RequestMapping("/main.do")
+	public String openMain()throws Exception{
+		return "/main";
+	}
+	
 	@RequestMapping("/board/insertBoard.do")
 	public String insertBoard(BoardDto board) throws Exception{
 		boardService.insertBoard(board);
