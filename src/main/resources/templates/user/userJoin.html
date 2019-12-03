@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/style1.css" />
+<title>회원가입</title>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	function check(){
+		var userId = $('#userId').val();
+
+		$.ajax({
+			url: "/user/selectOneUser.do",
+			type:'POST',
+			data: userId,
+			dataType: "text",
+			contentType: "application/json; charset=UTF-8",
+			success: function(data){
+				alert(data);
+			},
+			error: function(error){
+				alert("error: " + error);
+			}
+		});
+	}
+</script>
+<style>
+	.check{
+		font-weight: bold;
+		border-radius: 5px;
+		cursor: pointer;
+		padding: 15px 3px;
+		background: #33b5e5;
+		border: 0;
+		color: #ffffff;
+		-webkit-transition: 0.3s ease;
+		transition: 0.3s ease;
+		text-decoration: none important;
+	}
+</style>
+</head>
+<body>
+	<form id="join" action="/user/loginUser.do" method="post">
+		<table>
+			<tr>
+				<td><input class="box" type="text" name="userName" id="userName" placeholder="이름"/></td>
+				<td><input type="button" value="중복확인" class="check" onclick="check()"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input class="box" type="text" name="userId" id="userId" placeholder="아이디"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input class="box" type="password" name="password" id="password" placeholder="비밀번호"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input class="box" type="password" name="repassword" id="repassword" placeholder="비밀번호 확인"/></td>
+			</tr>
+		</table>
+		<input type="submit" name="join" value="회원가입" class="submit">
+	</form>
+</body>
+</html>
