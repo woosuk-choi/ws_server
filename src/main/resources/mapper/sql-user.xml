@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="ws_server.user.mapper.UserMapper">
+	<select id="idCheck" parameterType="string" resultType="boolean">
+		<![CDATA[
+			SELECT if(COUNT(*) > 0, 'true', 'false')
+			  FROM WS_User
+			 WHERE userId = #{userId}
+		]]>
+	</select>
+	
+	<select id="selectOneUser" parameterType="string" resultType="ws_server.user.dto.UserDto">
+		<![CDATA[
+			SELECT *
+			  FROM WS_User
+			 WHERE userId = #{userId} AND deleted_yn = 'N'
+		]]>
+	</select>
+
+	<insert id="insertUser" parameterType="ws_server.user.dto.UserDto">
+		<![CDATA[
+			INSERT INTO WS_User(   
+					userId,    
+					password, 
+					joinDate, 
+					userName
+			)VALUES(
+					#{userId}, 
+					#{password},    
+					NOW(), 
+					#{userName}
+			);
+		]]>
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

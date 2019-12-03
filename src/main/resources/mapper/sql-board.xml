@@ -3,14 +3,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="ws_server.board.mapper.BoardMapper">
-	<select id="selectBoardList" resultType="ws_server.board.dto.BoardDto">
+	<select id="selectBoardList" parameterType="string" resultType="ws_server.board.dto.BoardDto">
 		<![CDATA[
 			SELECT idKey, title, hitCnt, DATE_FORMAT(createdDate, '%Y-%m-%d %H:%i:%s') AS createdDate 
+			  FROM WS_Board
+			 WHERE deleted_yn = 'N'AND category = #{category}
+		  ORDER BY idKey DESC
+		]]>
+	</select>
+	
+	<select id="selectAllBoardList" resultType="ws_server.board.dto.BoardDto">
+		<![CDATA[
+			SELECT idKey, title, hitCnt, category, DATE_FORMAT(createdDate, '%Y-%m-%d %H:%i:%s') AS createdDate 
 			  FROM WS_Board
 			 WHERE deleted_yn = 'N'
 		  ORDER BY idKey DESC
 		]]>
-	</select>
+	</select>	
 	
 	<insert id="insertBoard" parameterType="ws_server.board.dto.BoardDto">
 		<![CDATA[

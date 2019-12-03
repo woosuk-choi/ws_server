@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script></script>
+<body>
+<div class="div">
+      <a class="a1" id="login" href="/user/openUserLogin.do">로그인</a>
+      <a class="a1" href="/user/openUserJoin.do">회원가입</a>
+      <div class="div1">
+        <a href="/openMain.do"><img src="/images/logo.jpg" alt="로고"></a>
+      </div>
+        <div class="div1-2">
+          <ul>
+            <li>
+              <a href="/board/openBoardList.do?category=동남아">동남아</a>
+            </li>
+
+            <li>
+              <a href="/board/openBoardList.do?category=유럽">유럽</a>
+            </li>
+
+            <li>
+              <a href="/board/openBoardList.do?category=북아메리카">북아메리카</a>
+            </li>
+
+            <li>
+              <a href="/board/openBoardList.do?category=남아메리카">남아메리카</a>
+            </li>
+
+            <li>
+              <a href="/board/openBoardList.do?category=아시아">아시아</a>
+            </li>
+
+            <li>
+              <a href="/board/openBoardList.do?category=국내">국내</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+</body>
+</html>

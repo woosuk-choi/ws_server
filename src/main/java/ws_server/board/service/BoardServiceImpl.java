@@ -15,8 +15,8 @@ public class BoardServiceImpl implements BoardService{
 	private BoardMapper boardMapper;
 	
 	@Override
-	public List<BoardDto> selectBoardList() throws Exception {
-		return boardMapper.selectBoardList();
+	public List<BoardDto> selectBoardList(String category) throws Exception {
+		return boardMapper.selectBoardList(category);
 	}
 
 	@Override
@@ -41,6 +41,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void deleteBoard(int idKey) throws Exception {
 		boardMapper.deleteBoard(idKey);
+	}
+
+	@Override
+	public List<BoardDto> selectAllBoardList() throws Exception {
+		return boardMapper.selectAllBoardList();
 	}
 
 }

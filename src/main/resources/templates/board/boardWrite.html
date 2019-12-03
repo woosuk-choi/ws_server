@@ -5,10 +5,29 @@
 	<title>board</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$("#save").on("click", function(){
+		var category = $("#category option:selected").val();
+		var frm = $("#frm")[0];
+		frm.action = "/board/insertBoard.do";
+		frm.submit();
+	});
+	
+});
+
+</script>
 <body>
+	<!-- header include -->
+    <th:block th:include="header"></th:block>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
 	<div class="container">
 		<h2>게시판 등록</h2>
-		<form id="frm" name="frm" method="post" action="/board/insertBoard.do">
+		<form id="frm" name="frm" method="post">
 			<table class="board_detail">
 				<tr>
 					<td>제목</td>
@@ -25,10 +44,10 @@
 			<option value="동남아">동남아</option>
 			<option value="유럽">유럽</option>
 			<option value="북아메리카">북아메리카</option>
-     		 <option value="남아메리카">남아메리카</option>
+     		<option value="남아메리카">남아메리카</option>
       		<option value="국내">국내</option>
 		</select>	
-			<input type="submit" id="submit" value="저장" class="">
+			<input type="button" id="save" value="저장" class="btn">
 		</form>
 	</div>
 </body>

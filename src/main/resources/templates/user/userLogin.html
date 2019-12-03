@@ -1,16 +1,46 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/css/style1.css" />
-	<title>로그인</title>
-</head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/style1.css}" />
+<title>회원가입</title>
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$("#login").on("click", function(){
+		if($("#userId").val() == "" || $("#password").val() == ""){
+			alert("아이디 또는 비밀번호를 입력하세요.");
+			return false;
+		}else{
+			var frm = $("#frm");
+			frm.submit();
+		}
+	});
+	
+});
+
+</script>
 <body>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<form id="login" action="/user/loginUser.do" method="post">
-		<input class="box" type="text" name="email" id="email" placeholder="이메일" /> <br> 
-		<input class="box" type="password" name="password" id="pw" placeholder="비밀번호" /><br><br>
-		<input type="submit" name="Login" value="로그인" class="submit">
-	</form>
+	<!-- header include -->
+    <th:block th:include="header"></th:block>
+   
+   <br><br><br><br><br><br><br><br><br><br><br><br>
+   
+    <div class="dbox">
+		<form id="frm" action="/user/loginUser.do" method="post">
+			<table>
+				<tr>
+					<td><input class="box" type="text" name="userId" id="userId" placeholder="아이디"/> </td>
+				</tr>
+				<tr th:text="${msg}"></tr>
+				<tr>
+					<td><input class="box" type="password" name="password" id="password" placeholder="비밀번호" /></td>
+				</tr>
+				<tr th:text="${msg}"></tr>
+			</table>
+			<input type="button" id="login" value="로그인" class="submit">
+		</form>
+	</div>
 </body>
 </html>

@@ -9,7 +9,7 @@ import ws_server.board.dto.BoardDto;
 @Mapper
 public interface BoardMapper {
 
-	public List<BoardDto> selectBoardList() throws Exception;
+	public List<BoardDto> selectBoardList(String category) throws Exception;
 
 	void insertBoard(BoardDto board) throws Exception;
 
@@ -20,4 +20,6 @@ public interface BoardMapper {
 	void updateBoard(BoardDto board) throws Exception;
 
 	void deleteBoard(int idKey) throws Exception;
+
+	public List<BoardDto> selectAllBoardList()throws Exception;
 }

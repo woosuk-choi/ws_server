@@ -6,6 +6,11 @@
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
+	<!-- header include -->
+    <th:block th:include="header"></th:block>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
 	<div class="container">
 	<h2>게시판 상세 화면</h2>
 	<form id="frm" method="post">
@@ -39,9 +44,9 @@
 		<input type="hidden" name="idKey" th:value="${board.idKey}">
 	</form>
 	<br>
-	<input type="button" id="list" value="목록으로">
-	<input type="button" id="edit" value="수정하기">
-	<input type="button" id="delete" value="삭제하기">
+	<input type="button" id="list" value="목록으로" class="btn">
+	<input type="button" id="edit" value="수정하기" class="btn">
+	<input type="button" id="delete" value="삭제하기" class="btn">
 	</div>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -61,7 +66,7 @@
 				var frm = $("#frm")[0];
 				frm.action = "deleteBoard.do";
 				frm.submit();
-			})
+			});
 		
 		});
 	</script>

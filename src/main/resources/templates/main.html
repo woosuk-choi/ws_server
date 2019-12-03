@@ -1,154 +1,77 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="/css/main.css">
-    <meta charset="utf-8">
-    <title>여행후기</title>
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-
-  <script>
-      $(document).ready(function(){
-        $('.slider').bxSlider({
-          auto:true,
-          controls : false
-        });
-      });
-    </script>
-  </head>
-  <body>
-    <div class="div">
-      <a class="a1" href="login.html">로그인</a>
-      <a class="a1" href="#">회원가입</a>
-      <div class="div1">
-        <a href="main.html"><img src="/images/logo.jpg" alt="로고"></a>
-      </div>
-        <div class="div1-2">
-          <ul>
-            <li>
-              <a href="#">동남아</a>
-            </li>
-
-            <li>
-              <a href="#">유럽</a>
-            </li>
-
-            <li>
-              <a href="#">북아메리카</a>
-            </li>
-
-            <li>
-              <a href="#">남아메리카</a>
-            </li>
-
-            <li>
-              <a href="#">아시아</a>
-            </li>
-
-            <li>
-              <a href="#">국내</a>
-            </li>
-          </ul>
-        </div>
-    </div>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/css/main.css}"></link>
+	<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+	<meta charset="utf-8">
+	<title>여행후기</title>
+	<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	  $('.slider').bxSlider({
+	    auto:true,
+	    controls : false
+	  });
+	});
+	</script>
+</head>
+<body>
+  <!-- header include -->
+    <th:block th:include="header"></th:block>
+    
     <div class="sliderbox">
       <div class="slider">
         <div> <img class="simg" src="/images/sliderimg1.jpg"  alt="동남아"></div>
-        <div> <img class="simg"src="/images/sliderimg2.jpg" alt="유럽"></div>
-        <div> <img class="simg"src="/images/sliderimg3.jpg"  alt="북아메리카"></div>
-        <div> <img class="simg"src="/images/sliderimg4.jpg" alt="남아메리카"></div>
-        <div> <img class="simg"src="/images/sliderimg5.jpg" alt="국내"></div>
+        <div> <img class="simg" src="/images/sliderimg2.jpg" alt="유럽"></div>
+        <div> <img class="simg" src="/images/sliderimg3.jpg"  alt="북아메리카"></div>
+        <div> <img class="simg" src="/images/sliderimg4.jpg" alt="남아메리카"></div>
+        <div> <img class="simg" src="/images/sliderimg5.jpg" alt="국내"></div>
       </div>
     </div>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-    <div class="board">
-      <div class="leftboard">
-        <div>
-          <i class="xi-play xi-3x i1"></i>
-          <a class="lba"href="#">동남아</a>
-          <a class="lbar"href="#">더보기</a>
-          <i class="xi-plus-min xi-2x i1 i2"></i>
-        </div>
-        <div class="leftboardca">
-          <ul>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="rightboard">
-        <div>
-          <i class="xi-play xi-3x i1"></i>
-          <a class="lba"href="#">유럽</a>
-          <a class="lbar"href="#">더보기</a>
-          <i class="xi-plus-min xi-2x i1 i2"></i>
-        </div>
-        <div class="rightboardca">
-          <ul>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="leftboard">
-        <div>
-          <i class="xi-play xi-3x i1"></i>
-          <a class="lba"href="#">북아메리카</a>
-          <a class="lbar"href="#">더보기</a>
-          <i class="xi-plus-min xi-2x i1 i2"></i>
-        </div>
-        <div class="leftboardca">
-          <ul>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="rightboard">
-        <div>
-          <i class="xi-play xi-3x i1"></i>
-          <a class="lba"href="#">국내</a>
-          <a class="lbar"href="#">더보기</a>
-          <i class="xi-plus-min xi-2x i1 i2"></i>
-        </div>
-        <div class="rightboardca">
-          <ul>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="leftboard">
-        <div>
-          <i class="xi-play xi-3x i1"></i>
-          <a class="lba"href="#">남아메리카</a>
-          <a class="lbar"href="#">더보기</a>
-          <i class="xi-plus-min xi-2x i1 i2"></i>
-        </div>
-        <div class="leftboardca">
-          <ul>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-            <li><a class="ca"href='#'>카테고리 미리보기</a></li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </body>
+	<div class="container">
+	<h2>게시판 목록</h2>
+	<table class="board_list">
+		<colgroup>
+			<col width="15%"/>
+			<col width="*"/>
+			<col width="15%"/>
+			<col width="20%"/>
+			<col width="15%"/>
+		</colgroup>
+		<thead>
+			<tr>
+				<th scope="col">글번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">조회수</th>
+				<th scope="col">작성일</th>
+				<th scope="col">카테고리</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+				<td th:text="${list.idKey}"></td>
+				<td class="title">
+					<a href="/board/openBoardDetail.do?idKey=" th:attrappend="href=${list.idKey}" th:text="${list.title}"></a>
+				</td>
+				<td th:text="${list.hitCnt}"></td>
+				<td th:text="${list.createdDate}"></td>
+				<td th:text="${list.category}"></td>
+			</tr>
+			<tr th:unless="${#lists.size(list)} > 0">
+				<td colspan="5">조회된 결과가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/board/openBoardWrite.do" class="btn">글 쓰기</a>
+	</div>
+    
+ </body>
 </html>

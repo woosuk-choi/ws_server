@@ -2,7 +2,10 @@ package ws_server.board.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +24,22 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@RequestMapping("/openMain.do")
+	public ModelAndView openMain()throws Exception{
+		ModelAndView mv = new ModelAndView("/main");
+		
+		List<BoardDto> list = boardService.selectAllBoardList();
+		mv.addObject("list", list);
+		
+		return mv;
+	}
+	
 	@RequestMapping("/board/openBoardList.do")
-	public ModelAndView openBoardList() throws Exception{
+	public ModelAndView openBoardList(@RequestParam String category) throws Exception{
 		log.debug("openBoardList");
 		ModelAndView mv = new ModelAndView("/board/boardList");
 		
-		List<BoardDto> list = boardService.selectBoardList();
+		List<BoardDto> list = boardService.selectBoardList(category);
 		mv.addObject("list", list);
 		
 		return mv;
@@ -37,15 +50,12 @@ public class BoardController {
 		return "/board/boardWrite";
 	}
 	
-	@RequestMapping("/main.do")
-	public String openMain()throws Exception{
-		return "/main";
-	}
-	
 	@RequestMapping("/board/insertBoard.do")
 	public String insertBoard(BoardDto board) throws Exception{
+		//board.setCategory(category);
 		boardService.insertBoard(board);
-		return "redirect:/board/openBoardList.do";
+		log.debug(board.getCategory());
+		return "redirect:/openMain.do";
 	}
 	
 	@RequestMapping("/board/openBoardDetail.do")

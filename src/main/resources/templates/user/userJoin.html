@@ -1,28 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="/css/style1.css" />
 <title>회원가입</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-	function check(){
+$(document).ready(function(){
+	var idCheck = 0;	//아이디 체크 여부(defaule=0, 중복이 아닐 경우에만 1)
+	
+	$("#check").on("click", function(){
 		var userId = $('#userId').val();
 
 		$.ajax({
-			url: "/user/selectOneUser.do",
+			url: "/user/idCheck.do",
 			type:'POST',
 			data: userId,
 			dataType: "text",
 			contentType: "application/json; charset=UTF-8",
 			success: function(data){
-				alert(data);
+				if(data == "true"){
+					alert("아이디가 존재합니다. 다른 아이디를 입력해주세요");
+					console.log(idCheck);
+				}else{
+					alert("사용 가능한 아이디입니다.")
+					idCheck = 1;
+					console.log(idCheck);
+				}
 			},
 			error: function(error){
 				alert("error: " + error);
 			}
 		});
-	}
+	});
+	
+	$("#join").on("click", function(){
+		if($("#userName").val() == ""){
+			alert("이름을 입력해주세요");
+			return false;
+		}else if($("#userId").val() == ""){
+			alert("아이디를 입력해주세요");
+			return false;
+		}else if($("#password").val() == ""){
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}else if($("#password").val() != $("#repassword").val()){
+			alert("비밀번호가 다릅니다.");
+			return false;
+		}else{
+			if(idCheck == 0){
+				alert("중복체크를 해주세요");
+				console.log(idCheck);
+				return false;
+			}else{
+				var frm = $("#frm");
+				alert("회원가입을 축하합니다.")
+				frm.submit();
+			}
+		}
+	});
+	
+	
+});	
+
 </script>
 <style>
 	.check{
@@ -40,23 +80,30 @@
 </style>
 </head>
 <body>
-	<form id="join" action="/user/loginUser.do" method="post">
-		<table>
-			<tr>
-				<td><input class="box" type="text" name="userName" id="userName" placeholder="이름"/></td>
-				<td><input type="button" value="중복확인" class="check" onclick="check()"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input class="box" type="text" name="userId" id="userId" placeholder="아이디"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input class="box" type="password" name="password" id="password" placeholder="비밀번호"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input class="box" type="password" name="repassword" id="repassword" placeholder="비밀번호 확인"/></td>
-			</tr>
-		</table>
-		<input type="submit" name="join" value="회원가입" class="submit">
-	</form>
+	<!-- header include -->
+    <th:block th:include="header"></th:block>
+    
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    
+    <div class="dbox">
+		<form id="frm" action="/user/insertUser.do" method="post">
+			<table>
+				<tr>
+					<td colspan="2"><input class="box" type="text" name="userName" id="userName" placeholder="이름"/></td>
+				</tr>
+				<tr>
+					<td><input class="box" type="text" name="userId" id="userId" placeholder="아이디"/></td>
+					<td><input type="button" id="check" value="중복확인" class="check"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="box" type="password" name="password" id="password" placeholder="비밀번호"/></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input class="box" type="password" name="repassword" id="repassword" placeholder="비밀번호 확인"/></td>
+				</tr>
+			</table>
+			<input type="button" id="join" value="회원가입" class="submit">
+		</form>
+	</div>
 </body>
 </html>

@@ -6,7 +6,7 @@ import ws_server.board.dto.BoardDto;
 
 public interface BoardService {
 
-	List<BoardDto> selectBoardList() throws Exception;
+	List<BoardDto> selectBoardList(String category) throws Exception;
 
 	void insertBoard(BoardDto board) throws Exception;
 
@@ -15,5 +15,7 @@ public interface BoardService {
 	void updateBoard(BoardDto board) throws Exception;
 
 	void deleteBoard(int idKey) throws Exception;
+
+	List<BoardDto> selectAllBoardList()throws Exception;
 
 }
