@@ -71,12 +71,12 @@ public class BoardController {
 	@RequestMapping("/board/updateBoard.do")
 	public String updateBoard(BoardDto board)throws Exception{
 		boardService.updateBoard(board);
-		return "redirect:/board/openBoardList.do";
+		return "redirect:/openMain.do";
 	}
 	
 	@RequestMapping("/board/deleteBoard.do")
 	public String deleteBoard(int idKey)throws Exception{
 		boardService.deleteBoard(idKey);
-		return "redirect:/board/openBoardList.do";
+		return "redirect:/openMain.do";
 	}
 }

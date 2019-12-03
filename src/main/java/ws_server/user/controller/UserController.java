@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ws_server.user.dto.UserDto;
 import ws_server.user.service.UserService;
@@ -46,30 +47,33 @@ public class UserController extends HttpServlet{
 		return "redirect:/user/openUserLogin.do";
 	} 
 	
+	/*
 	@RequestMapping("/user/loginUser.do")
-	public ModelAndView loginUser(@RequestParam String userId,
-						  @RequestParam String password,
-						  HttpServletRequest request)throws Exception{
+	public String loginUser(UserDto userDto,
+								HttpServletRequest request,
+								RedirectAttributes ra)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
-		UserDto user = userService.selectOneUser(userId);
+		UserDto user = userService.selectOneUser(userDto.getUserId());
 		
 		String msg = "";
 		
 		//아이디가 존재하지 않는 경우
 		if(user == null) {
-			msg = "아이디가 존재하지 않습니다.";
+			ra.addFlashAttribute("msg", "아이디가 존재하지 않습니다.");
+	        ra.addFlashAttribute("url","/error");
+	        return "redirect:/alert"; // alert 후, 전달된 url 파라미터로 이동시키는 페이지
 			
 			mv.setViewName("/user/userLogin");
 			mv.addObject("msg", msg);
 		}else {
 			//로그인 성공
-			if(password == user.getPassword()) {
+			if(userDto.getPassword() == user.getPassword()) {
 				msg = "[" + user.getUserName() + "]님 환영합니다.";
 				
 				//세션 저장
-				request.setAttribute("userId", userId);
+				request.setAttribute("userId", user.getUserId());
 				
 				mv.setViewName("/main");
 				mv.addObject("msg", msg);
@@ -83,5 +87,5 @@ public class UserController extends HttpServlet{
 		
 		return mv;
 	}
-	
+	*/
 }

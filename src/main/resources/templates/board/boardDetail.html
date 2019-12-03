@@ -43,6 +43,7 @@
 		</table>
 		<input type="hidden" name="idKey" th:value="${board.idKey}">
 	</form>
+	<input type="hidden" id="category" th:value="${board.category}">
 	<br>
 	<input type="button" id="list" value="목록으로" class="btn">
 	<input type="button" id="edit" value="수정하기" class="btn">
@@ -52,8 +53,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			var category = $("#category").val();
+			
 			$("#list").on("click", function(){
-				location.href = "openBoardList.do";
+				location.href = "openBoardList.do?category=" + category;
 			});
 		
 			$("#edit").on("click", function(){
