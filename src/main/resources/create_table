@@ -18,11 +18,13 @@ CREATE TABLE WS_Board(
 
 CREATE TABLE WS_User (
   idKey BIGINT NOT NULL AUTO_INCREMENT,
+  userName VARCHAR(10) NOT NULL,
   userId VARCHAR(50) NOT NULL,
   password VARCHAR(1024) NULL,
   joinDate DATETIME NOT NULL COMMENT '가입일',
   deleted_yn CHAR(1) NOT NULL DEFAULT 'N' COMMENT '삭제 여부',
   PRIMARY KEY (idKey)
-);
+)DEFAULT CHARSET=utf8 COLLATE utf8_general_ci;
 
 INSERT INTO WS_Board(title, contents, creatorId, createdDate, category) VALUES('first', 'first', 'admin', NOW(), '국내');
+insert into ws_user(userId, password, joinDate, userName) values('woosuk', 'woosuk', NOW(), '최우석');
